@@ -31,5 +31,6 @@ async function getAll(id) {
 module.exports ={
     add,
     getAll,
-    getAll
+    getById,
+    getByUsername
 } 
