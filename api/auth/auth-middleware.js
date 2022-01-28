@@ -9,29 +9,28 @@ const checkReqBody = (req, res, next) => {
       next()
     }
   }
-  const isUsernameAvailable = async (req, res, next) =>{
-    const username = await User.getByUsername(req.body.username)
-    if(username){
-      next({status:401, message:"username taken"})
-    }
-    else{
-      next()
-    }
+const isUsernameAvailable = async (req, res, next) =>{
+  const username = await User.getByUsername(req.body.username)
+  if(username){
+    next({status:401, message:"username taken"})
   }
-  
-  const isUsernameThere = async (req, res, next) =>{
-    const username = await User.getByUsername(req.body.username)
-    if(!username){
-      next({status:401, message:"invalid credentials"})
-    }
-    else{
-      next()
-    }
+  else{
+    next()
   }
-  
+}
+
+const isUsernameThere = async (req, res, next) =>{
+  const username = await User.getByUsername(req.body.username)
+  if(!username){
+    next({status:401, message:"invalid credentials"})
+  }
+  else{
+    next()
+  }
+}
+
 module.exports = {
     checkReqBody,
     isUsernameAvailable,
     isUsernameThere,
-} 
- 
+}
